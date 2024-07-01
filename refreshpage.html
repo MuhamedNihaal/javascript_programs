@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            JavaScript-Function to Refresh Page on Button Click.
+        </title>
+        <script type="text/javascript">
+            function refreshPage(){
+                if(confirm("Are you sure, want to refresh?")){
+                    window.location.reload();
+                }
+            }
+        </script>
+    </head>
+    <body style="text-align:center;">
+        <h1>JavaScript-Function to Refresh Page on Button Click</h1>
+        <p><input type="button" value="Refresh Page" onclick="refreshPage()"/>
+        <!-- <button onclick="refreshPage()">Refresh Page</button>     -->
+    </body>
+</html>

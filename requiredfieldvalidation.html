@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            JavaScript-Required Field Validator for Text Box on Submit
+        </title>
+        <style>
+            .reqError{
+                color:red;
+                font-weight: bold;        
+            }    
+        </style>
+        <script>
+            //function to check validation
+
+            function checkReqField(){
+                var returnValue=true;
+                var name=document.getElementById("txtName").value;
+                var email=document.getElementById("txtEmail").value;
+                document.getElementById("reqTxtName").innerHTML="";
+                document.getElementById("reqTxtEmail").innerHTML="";
+                if(email.trim()==""){
+                    document.getElementById("reqTxtEmail").innerHTML="Address Required";
+                    returnValue=false;
+                }
+                if(email!=""){
+                    var chkemail=lookslikeMail(email);
+                    alert(chkemail);
+                        if(!chkemail){
+                            document.getElementById("reqTxtEmail").innerHTML="Address Invalid";
+                            returnValue=false;
+                        }
+                }
+                if(name.trim()==""){
+                    document.getElementById("reqTxtName").innerHTML="Name Required";
+                    returnValue=false;
+                }
+                return returnValue;
+            }
+            function lookslikeMail(str){
+                pattern=/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+                if(pattern.test(str)){
+                    return true;
+                }
+                else{
+                    return false;
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <h1>JavaScript-Required Field Validator for Text Box on Submit</h1>
+        <form onsubmit="return checkReqField()">
+            <b>Enter Name:</b><br>
+            <input type="text" id="txtName"/>
+            <span id="reqTxtName" class="reqError"></span><br>
+            <br>
+            <b>Enter Email Address:</b><br>
+            <input type="text" id="txtEmail"/>
+            <span id="reqTxtEmail" class="reqError"></span><br>
+            <p><input type="submit" value="Submit"/></p>
+        </form>
+    </body>
+</html>

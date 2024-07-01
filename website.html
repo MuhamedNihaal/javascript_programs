@@ -1,0 +1,215 @@
+<script>
+    function checkReqField(){
+        document.body.style.backgroundImage = "url('img.jpg')";
+    
+        alert($('#txtName').val());     
+        
+         var returnValue=true;
+    
+         var name=document.getElementById("txtName").value;
+    
+         var address=document.getElementById("txtAddress").value;
+    
+         var pno=document.getElementById("pnoid").value; 
+         var gender=document.getElementsByName("gen");
+         //alert(gender.length);
+         var hobbies=document.getElementsByName("arr[]"); 
+         var country=document.getElementById("country").value;
+    
+        // var country=document.getElementsByName("country").value;
+        document.getElementById("reqTxtName").innerHTML="";
+        document.getElementById("reqTxtGender").innerHTML="";
+        document.getElementById("reqTxtHobbies").innerHTML="";
+        document.getElementById("reqTxtAddress").innerHTML="";
+        document.getElementById("reqTxtNum").innerHTML="";
+        document.getElementById("reqTxtCountry").innerHTML="";
+         if(name.trim()==""){
+    
+            document.getElementById("reqTxtName").innerHTML="* Nameisrequired.";
+    
+            returnValue=false;
+    
+        }
+    
+        if(address.trim()==""){		
+    
+            document.getElementById("reqTxtAddress").innerHTML="*Addressisrequired.";
+    
+            returnValue=false;
+        }
+    
+        if(address !=""){
+    
+            var email=looksLikeMail(address);
+    
+            if(!email){
+    
+                document.getElementById("reqTxtAddress").innerHTML="*Address invalid.";
+    
+                returnValue=false;
+            }
+        }
+    
+        if(pno.trim()==""){
+    
+            document.getElementById("reqTxtNum").innerHTML="* PhoneNumberisrequired.";
+    
+            returnValue=false;
+    
+        }
+        if(pno !=""){
+    
+            var phno=phonenumber(pno);//alert();
+    
+            if(!phno){
+    
+            document.getElementById("reqTxtNum").innerHTML="*PhoneNumber invalid.";
+    
+            returnValue=false;
+    
+            }
+    
+        }
+    
+        s=0;
+        for(var i=0; i< gender.length;i++){
+            if(gender[i].checked){		
+                    s=1;
+            }
+        }
+            if(s==0){
+                document.getElementById("reqTxtGender").innerHTML="* Gender is required.";
+    
+                returnValue=false;
+            }
+        
+        F=0;
+        for(var i=0; i< hobbies.length;i++){
+    
+            if(hobbies[i].checked){
+                F=1;
+    
+            }
+        }
+            if(F==0){
+                document.getElementById("reqTxtHobbies").innerHTML="* Hobbies are required.";
+    
+                returnValue=false;
+            }
+    
+        
+    if(country ==""){
+            
+            document.getElementById("reqTxtCountry").innerHTML="*Please Enter.";
+    
+            returnValue=false;	
+    
+        }
+        
+    
+    return returnValue;
+    
+    }
+    
+    
+    function looksLikeMail(str) 
+        {
+    
+    
+            var re = /\S+@\S+\.\S+/; 
+    
+            return re.test(str); 
+         
+    
+        }
+    
+    function phonenumber(inputtxt)
+    {
+        
+      var phoneno = /^\d{10}$/;
+    
+      if((phoneno.test(inputtxt)))
+            {
+                
+                return true;
+            }else
+            {return false;}
+         
+    }
+    </script>	
+    <style>
+    .reqError{
+    
+        color: red; 
+    
+        font-weight:bold;
+    
+    }
+    
+    table{margin-top: 10px;border:1px solid gray}
+    td{padding:10px}
+    </style>
+    <html>
+        <head>
+            <title>Registration Form</title>
+            
+    
+        </head>
+        <body>
+            <form method="post" enctype="multipart/form-data" onsubmit="return checkReqField()">
+                <table border="0" style="">
+                    <Tr>
+                        <th>Enter Your  name</th>
+                        <Td><input type="text" name="n" id="txtName" /><span id="reqTxtName" class="reqError"></span><br>
+    </td>
+                    </tr>
+                    <Tr>
+                        <th>Enter Your  Email</th>
+                        <Td><input type="text" name="e" id="txtAddress"/><span id="reqTxtAddress" class="reqError"></span><br></td>
+                    </tr>
+                    <Tr>
+                        <th>Enter Your  Mobile</th>
+                        <Td><input  type="text" name="m" id="pnoid" /><span id="reqTxtNum" class="reqError"></span><br></td>
+                    </tr>
+                    <Tr>
+                        <th>Select Your gender</th>
+                        <Td>
+                        Male<input  type="radio" name="gen" value="m"  />
+                        Female<input type="radio" name="gen" value="f" />
+                        <span id='reqTxtGender' class="reqError"></span>
+                        </td>
+                    </tr>
+                    <Tr>
+                        <th>Choose Your hobbies</th>
+                        <Td>
+                        Reading<input  type="checkbox" name="arr[]" value="reading"/>
+                        Singing<input type="checkbox" name="arr[]" value="singing"/>
+                        Playing<input type="checkbox" name="arr[]" value="playing"/>
+                        
+                        <span id='reqTxtHobbies' class="reqError"></span>
+    
+                        </td>
+                    </tr>
+                    <Tr>
+                        <th>Select Your Country</th>
+                        <Td>
+                        <select name="cou"  id="country">
+                            <option value="">Select Country</option>
+                            <option >India</option>
+                            <option>Pakistan</option>
+                            <option>China</option>
+                            <option>United State</option>
+                        </select>
+                        <span id='reqTxtCountry' class="reqError"></span>
+                        </td>
+                    </tr>
+                    
+                    <Tr>
+                        <Td colspan="2" align="center">
+                        <input type="submit" name="save" value="Save"/>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </body>
+    </html>
